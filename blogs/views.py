@@ -20,6 +20,7 @@ class PostDetailView(DetailView):
 
 class CommentCreateView(CreateView):
     form_class = CommentModelForm
+    
 
     def form_valid(self, form):
         print(form.instance)
