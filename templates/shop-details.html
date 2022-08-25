@@ -148,7 +148,7 @@
                             <h5><span>Guaranteed Safe Checkout</span></h5>
                             <img src="{% static 'img/shop-details/details-payment.png' %}" alt="">
                             <ul>
-                                <!--                                    <li><span>SKU:</span> 3812912</li>-->
+                                <li><span>SKU:</span>{{ object.sku }} </li>
                                 <li><span>Category:</span> {{ object.category.name }}</li>
                                 <li><span>Tags:</span>
                                     {% for tag in object.tags.all %}

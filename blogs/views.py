@@ -30,4 +30,4 @@ class CommentCreateView(CreateView):
 
 
     def get_success_url(self):
-       return reverse('blogs:detail', kwargs={'pk':self.kwargs.get('pk')}) #/blogs/detail/3/
+       return reverse('blogs:detail', kwargs={'pk':self.kwargs.get('pk')})
