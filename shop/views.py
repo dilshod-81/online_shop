@@ -1,3 +1,4 @@
+from django.db.models import Min, Max
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from  .models import ProductModel, CategoryModel, ProductTagModel, ColorModel, BrandModel, SizeModel
@@ -51,6 +52,7 @@ class ShopView(ListView):
         data['sizes'] = SizeModel.objects.all()
         data['brands'] = BrandModel.objects.all()
         data['colors'] = ColorModel.objects.all()
+        data['min_price'], data['max_price'] = ProductModel.objects.aggregate(Min('price'), Max('price')).values()
 
         return data
 
@@ -61,5 +63,5 @@ class ProductDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data()
-        data['product'] = ProductModel.objects.all().exclude(id=self.object.pk)[:4]
+        data['products'] = ProductModel.objects.all().exclude(id=self.object.pk)[:4]
         return data
