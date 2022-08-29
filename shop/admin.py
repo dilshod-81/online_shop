@@ -1,7 +1,10 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import ProductTagModel, ProductModel, CategoryModel, SizeModel, ColorModel, BrandModel
+from .models import ProductTagModel, ProductModel, CategoryModel, SizeModel, ColorModel, BrandModel, WishlistModel
 from .forms import ColorModelAdminForms
+@admin.register(WishlistModel)
+class WishlistModelAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product']
 
 @admin.register(ProductTagModel)
 class ProductTagModelAdmin(admin.ModelAdmin):
@@ -51,3 +54,5 @@ class ProductModelAdmin(admin.ModelAdmin):
     search_fields = ['title', 'price']
     autocomplete_fields = ['category', 'tags', 'sizes', 'colors']
     readonly_fields = ['real_price', 'sale']
+
+
