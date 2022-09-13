@@ -1,5 +1,6 @@
 from pathlib import Path
 from decouple import config
+from django.utils.translation import gettext_lazy as _
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -13,12 +14,15 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    "modeltranslation",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    'debug_toolbar',
 
     'ckeditor',
 
@@ -32,11 +36,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
@@ -90,6 +96,15 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
+LANGUAGES = (
+    ('en', '🇬🇧 English'),
+    ('ru', '🇷🇺 Russian'),
+    ('uz', '🇺🇿 Uzbek'),
+)
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en'
+LOCALE_PATHS = BASE_DIR / 'locale',
+
 TIME_ZONE = "UTC"
 
 USE_I18N = True
@@ -121,3 +136,10 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+INTERNAL_IPS = [
+     "127.0.0.1",
+ ]
+
+AUTH_USER_MODEL = 'users.UserModel'
+
