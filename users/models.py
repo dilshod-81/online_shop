@@ -53,7 +53,7 @@ class UserModel(AbstractUser):
         verbose_name = 'user'
         verbose_name_plural = 'users'
 class ProfileModel(models.Model):
-    user = models.OneToOneField(UserModel, on_delete=models.CASCADE)
+    user = models.OneToOneField(UserModel, on_delete=models.CASCADE, related_name='profiles')
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     country = models.CharField(max_length=125, null=True, blank=True)

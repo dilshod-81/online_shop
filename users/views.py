@@ -12,7 +12,7 @@ class ProfileView(UpdateView):
     form_class = ProfileForm
 
     def get_success_url(self):
-        return reverse('user:profile')
+        return reverse('user:profile' )
 
     def get_object(self, queryset=None):
         profile, created = ProfileModel.objects.get_or_create(user=self.request.user)
