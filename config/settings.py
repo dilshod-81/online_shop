@@ -9,7 +9,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS')
+ALLOWED_HOSTS =["127.0.0.1"]   #config('ALLOWED_HOSTS')
 
 
 
@@ -114,6 +114,7 @@ USE_TZ = True
 
 
 STATIC_URL = "static/"
+
 STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = BASE_DIR / 'assets',
